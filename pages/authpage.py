@@ -1,15 +1,10 @@
-from selenium import webdriver
 import requests
 
 
 class AuthPage:
-    def __init__(self, driver: webdriver, token):
+    def __init__(self, token):
         self.__url = 'https://api.kinopoisk.dev/v1.4'
         self.__token = token
-        self.__driver = driver
-
-    def go(self):
-        self.__driver.get(self.__url)
 
     def search_for_id(self, id):
         headers = {

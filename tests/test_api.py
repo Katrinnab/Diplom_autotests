@@ -1,31 +1,31 @@
 import pytest
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_search_id(main_page):
     movie = main_page.search_for_id(935898)
     assert movie['id'] == 935898
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_by_name(main_page):
     movie = main_page.search_by_name("Титаник")
     assert "Титаник".lower() in movie['docs'][0]['name'].lower()
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_by_type(main_page):
     movie = main_page.search_by_type("cartoon")
     assert movie['docs'][4]['type'] == "cartoon"
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_by_feature_date(main_page):
     movie = main_page.search_by_feature_date(2100)
     assert movie['error'] == 'Bad Request'
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_by_year_and_genre(main_page):
     movie = main_page.search_by_year_and_genres(2022, "комедия")
     # Есть ли неправильный год в списке фильмов
@@ -54,12 +54,13 @@ def test_by_year_and_genre(main_page):
     assert is_find_genre is True
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_by_invalid_rating(main_page):
     movie = main_page.search_by_invalid_rating(13)
     assert movie['error'] == 'Bad Request'
 
 
+# @pytest.mark.skip
 def test_by_year_age_country(main_page):
     movie = main_page.search_by_year_age_country(2022, 18, "Россия")
     # Есть ли неправильный год в списке фильмов
