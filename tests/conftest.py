@@ -10,19 +10,7 @@ from pages.uipage import KinoPage
 '''
 
 token = 'здесь твой токен'
-cookie_string = 'здесь твои куки'
 base_url = "https://www.kinopoisk.ru/"
-
-
-def parse_cookie(cookie_string):
-    cookies = []
-    for cookie in cookie_string.split(';'):
-        name, value = cookie.strip().split('=', 1)
-        cookies.append({'name': name, 'value': value, 'path': '/'})
-    return cookies
-
-
-cookies = parse_cookie(cookie_string)
 
 
 @pytest.fixture()
@@ -67,9 +55,5 @@ def kino_page(browser):
     Возвращает:
     Объект KinoPage, инициализированный с браузером.
     '''
-    browser.get(base_url)
-
-    for cookie in cookies:
-        browser.add_cookie(cookie)
     ui_page = KinoPage(browser)
     yield ui_page
