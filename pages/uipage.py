@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from time import sleep
 from selenium.webdriver.common.keys import Keys
 import allure
 
@@ -167,7 +166,6 @@ class KinoPage:
             s_genre = f"//ul[@id='genreList']//li[contains(@class, 'selectItem')]//label[contains(text(), '{genre}')]/input"
             self.__browser.find_element(By.XPATH, s_genre).click()
             genre_list.click()
-            sleep(2)
         with allure.step("Находим на странице элемент 'Страны', разворачиваем список стран"):
             # Задана ли страна
             if ((country := filter.get('country', '')) != ''):
@@ -177,7 +175,6 @@ class KinoPage:
             s_country = f"//ul[@id='countryList']//li[contains(@class, 'selectItem')]//label[contains(text(), '{country}')]/input"
             self.__browser.find_element(By.XPATH, s_country).click()
             country_list.click()
-            sleep(2)
         with allure.step("Находим на странице элемент 'Годы', разворачиваем список"):
             # Задан ли год
             if ((year := filter.get('year', '')) != ''):
@@ -188,7 +185,6 @@ class KinoPage:
                 s_year = f"//select[@class='wide year_select']/option[@value='{year}']"
                 self.__browser.find_element(By.XPATH, s_year).click()
                 year_list.click()
-                sleep(2)
             except Exception as e:
                 print(f"Год '{year}' не найден: {e}")
                 return None  # Возвращаем None, если год не найден
@@ -196,8 +192,6 @@ class KinoPage:
             # Ищем кнопку Поиск
             search_button = self.__browser.find_element(By.XPATH, '//input[@type="button" and @value="поиск"]')
             search_button.click()
-
-            sleep(5)
 
             result_elements = self.__browser.find_element(By.XPATH, '//div[@id="results"]/*')
             return result_elements
